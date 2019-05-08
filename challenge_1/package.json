@@ -1,13 +1,14 @@
 {
-  "name": "challenge_1",
+  "name": "challenge_1_historical_timeline",
   "version": "1.0.0",
-  "description": "",
+  "description": "View and search",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "json-server --watch data/db.json",
+    "dev": "webpack --debug --watch"
   },
   "keywords": [],
-  "author": "",
+  "author": "Michael Frenkel",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",

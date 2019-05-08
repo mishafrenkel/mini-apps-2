@@ -30,4 +30,47 @@ class App extends Component {
         .catch(err => console.error('Something went wrong:', err))
       })
   }
+
+  componentDidMount() {
+    this.loadEvents;
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    this.setState({
+      pageNumber: 1
+    }, () => {
+      this.loadEvents(this.state.queryString);
+    });
+  }
+
+  updateQuery(event) {
+    this.setState({
+      queryString: event.target.value
+    });
+  }
+
+  returnHome() {
+    this.setState({
+      queryString: '',
+      pageNumber: 1
+    }, () => {
+      this.loadEvents();
+    });
+  }
+
+  handlePageClick(data) {
+    const pageNumber = data.selected + 1;
+    this.setState({ pageNumber }, () => {
+      this.loadEvents(this.state.queryString);
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <nav className
+      </div>
+    );
+  }
 }
