@@ -5,5 +5,29 @@ import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 
 class App extends Component {
-  
+  constructor(props) {
+    super(props);
+    this.state = {
+      events: [],
+      pageNumber: 0,
+      pageCount: 1,
+      queryString: '', 
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.updateQuery = this.updateQuery.bind(this);
+    this.returnHome = this.returnHome.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  loadEvents(queryString = '') {
+    axios.get(`/events?q=${queryString}&_limit=10&_page=${this.state.pageNumber}`)
+      .then(response => {
+        const numOfPages = Math.ceil(response.headers['x-totoal-count'] / 10);
+        this.setState({
+          events: response.data,
+          pageCount: numOfPages,
+        })
+        .catch(err => console.error('Something went wrong:', err))
+      })
+  }
 }
