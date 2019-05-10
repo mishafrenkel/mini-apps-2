@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
@@ -22,13 +21,6 @@ app.use(express.static(path.join(__dirname, '/public')));
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
 })
-=======
-const path = require('path');
-const express = require('express');
-
-const PORT = 5000;
-const app = express();
->>>>>>> 26f12b49c17d1543540da7f39ffcc7d2e19a79a8
 
 app.use(express.static(path.resolve(__dirname, 'public')));
 app.use(express.json());
