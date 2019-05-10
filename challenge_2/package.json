@@ -1,7 +1,7 @@
 {
   "name": "challenge_2",
   "version": "1.0.0",
-  "description": "build a single-page app for viewing the historical price data for any cryptocurrency. ",
+  "description": "build a single-page app for generating historical price data for cryptocurrency. ",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,9 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/KiltedDrummer/hrsf102-mini-apps-2/tree/master/challenge_2"
+    "url": ""
   },
-  "author": "Nicholas Martin",
+  "author": "Michael Frenkel",
   "license": "ISC",
   "dependencies": {
     "@babel/cli": "^7.1.2",
