@@ -32,7 +32,7 @@ const Graph = ({ dates, prices, select, graphType, handleChange, handleSearch })
     return (
       <form>
         <label>Select the type of Graph to display</label>
-        <select name="type" onChange={selectGraphType}>
+        <select name="type" onChange={select}>
           <option name="bar" value="bar">Bar</option>
           <option name="line" value="line">Line</option>
           <option name="pie" value="pie">Pie</option>

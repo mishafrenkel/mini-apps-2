@@ -1,16 +1,16 @@
 import React from 'react';
-import CoinEntry from 'CoinEntry';
+import CoinEntry from './CoinEntry';
 
-const Coins = ({ coins }) => {
+const CoinList = ({ coins }) => {
   const coinEntries = coins.map(coin => {
     return <CoinEntry coin={coin} />
   });
 
   return (
     <div id="coins">
-      { Entries }
+      { coinEntries }
     </div>
   );
 };
 
-export default Coins;
+export default CoinList;

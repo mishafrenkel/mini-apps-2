@@ -3,7 +3,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 5000;
+const PORT = 5000;
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -18,12 +18,6 @@ app.use((req, res, next) => {
 app.use(express.static(path.join(__dirname, '/public')));
 
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
 })
-
-app.use(express.static(path.resolve(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-
-app.listen(PORT, () => { console.log(`Server listening in Port ${PORT}`); });
