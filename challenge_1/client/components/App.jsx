@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactPaginate from 'react-paginate';
 
 const YEAR = 0, DESCRIPTION = 1, ITEMS_PER_PAGE = 10;
 const TOTAL = "X-Total-Count";
 
-export default class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -129,3 +129,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;
