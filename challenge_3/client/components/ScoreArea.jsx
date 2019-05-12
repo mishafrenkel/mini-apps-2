@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import ScoreCard from "./ScoreCard";
+import Scorecard from "./Scorecard";
 import ScoreSelector from "./ScoreSelector";
 
 const ScoreArea = (props) => {
   let [players, setPlayers] = useState(0);
-  let [scoreCard, setScoreCard] = useState(0);
+  let [Scorecard, setScorecard] = useState(0);
   let [currentIndex, setCurrentIndex] = useState(0);
   let [message, setMessage] = useState('Click to input the number of pins knocked down. When you get a spare (knock down all 10) select "spare"');
   
@@ -73,7 +73,7 @@ const ScoreArea = (props) => {
   return (
     <div>
       <div>
-        <ScoreCard scores={scores} />
+        <Scorecard scores={scores} />
       </div>
       <div>
         <br />

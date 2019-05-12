@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import ScoreContainer from "./components/ScoreContainer"
+import Scorecard from "./Scorecard"
 
 const App = () => {
   return (

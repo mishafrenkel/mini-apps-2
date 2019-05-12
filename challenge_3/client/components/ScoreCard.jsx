@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ScoreCard = ({ scores }) => {
+const Scorecard = ({ scores }) => {
   const headers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
   let totalScore = scores.reduce((total, item) => {
@@ -54,7 +54,7 @@ const ScoreCard = ({ scores }) => {
             <td
               style={{
                 textAlign: "center",
-                verticalAlign: "center"
+                verticalAlign: "center",
                 width: "48px",
                 height: "48px",
               }}
@@ -82,3 +82,5 @@ const ScoreCard = ({ scores }) => {
     </div>
   );
 };
+
+export default Scorecard;
