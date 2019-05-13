@@ -53,4 +53,13 @@ class App extends Component {
     }
     this.renderChart(query);
   }
+  render() {
+    return (
+      <div>
+        <DatePicker handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+        <BPIChart labels={this.state.labels} data={this.state.data}/>
+        <p>Powered by CoinDesk</p>
+      </div>
+    )
+  }
 }

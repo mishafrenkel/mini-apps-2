@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/data', controllers.getCachedData);
+app.get('/coins', controllers.getCachedData);
 
 app.use(express.static(path.join(__dirname, '/public')));
 
