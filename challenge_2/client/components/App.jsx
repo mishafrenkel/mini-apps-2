@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Header from './Header';
-import CoinList from './CoinList';
-import CoinDetails from './CoinDetails';
+import CoinList from './CoinsList';
+import Details from './Details';
 import axios from 'axios';
 
 const ENDPOINT = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`;
@@ -15,7 +15,7 @@ export default class App extends Component {
       ],
       history: {
         "bpi": {
-          "2015-10-01": 228.2178,
+          "2013-09-01": 128.2597,
         },
         "disclaimer": "This data was produced from the CoinDesk Bitcoin Price Index. BPI value data returned as USD.",
         "time": {
@@ -27,14 +27,14 @@ export default class App extends Component {
       endDate: '2019-5-10',
       graphType: 'bar',
     };
-    this.select = this.select.bind(this);
+    this.selectGraphType = this.selectGraphType.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
   };
 
-  select(event) {
+  selectGraphType(event) {
     this.setState({
-      graphType: event.target.value
+      graphType: event.target.value;
     });
   }
 
@@ -81,11 +81,11 @@ export default class App extends Component {
         <Header />
         <div id="mainDisplay">
           <CoinList coins={this.state.currentCoins} />
-          <CoinDetails 
+          <Details 
             graphType={this.state.graphType}
             coin={this.state.currentCoins[0]}
             history={this.state.history.bpi}
-            select={this.select}
+            selectGraphType={this.select}
             handleChange={this.handleChange}
             handleSearch={this.handleSearch}
           />
