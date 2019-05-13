@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import Chart from 'chart.js';
-import chartOptions from '../chart.config.js';
+import chartOptions from './settings';
 
 class BPIChart extends Component {
   constructor(props) {

@@ -1,4 +1,4 @@
-module.exports = {
+const chartOptions = {
   type: 'line',
   data: {
     labels: [],
@@ -6,7 +6,7 @@ module.exports = {
       label: 'Historical BPI',
       data: [],
       backgroundColor: 'rgba(0, 0, 0, 0.0)',
-      borderColor: 'blue',
+      borderColor: 'purple',
       borderWidth: 2
     }]
   },
@@ -35,3 +35,5 @@ module.exports = {
     }
   }
 }
+
+module.exports = chartOptions;

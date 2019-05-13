@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import BPIChart from './components/Chart.jsx';
-import DateSelector from './components/DateSelector.jsx';
+// import ReactDOM from 'react-dom';
+import Header from './Header.jsx';
+import BPIChart from './Chart.jsx';
+import DateSelector from './DateSelector.jsx';
 import axios from 'axios';
 
 class App extends Component {
@@ -56,10 +57,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        <DatePicker handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
-        <BPIChart labels={this.state.labels} data={this.state.data}/>
-        <p>Powered by CoinDesk</p>
+        <Header />
+        <div>
+          <DateSelector handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+          <BPIChart labels={this.state.labels} data={this.state.data}/>
+          <p>Powered by CoinDesk</p>
+        </div>
       </div>
     )
   }
 }
+
+export default App;

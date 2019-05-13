@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-const controllers = require('./controllers.js');
+const controller = require('./controller.js');
 
 const app = express();
 const PORT = 5000;
@@ -16,7 +16,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/coins', controllers.getCachedData);
+app.get('/coins', controller.getCachedData);
 
 app.use(express.static(path.join(__dirname, '/public')));
 

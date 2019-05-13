@@ -8,7 +8,7 @@ let DateSelector = (props) => {
         type='text' 
         placeholder='YYYY-MM-DD' 
         style={{margin: '4px'}} 
-        name='start'
+        name='startDate'
         onChange={props.handleChange.bind(this)}>
         </input>
       To:
@@ -16,7 +16,7 @@ let DateSelector = (props) => {
         type='text' 
         placeholder='YYYY-MM-DD' 
         style={{margin: '4px'}}
-        name='end'
+        name='endDate'
         onChange={props.handleChange.bind(this)}>
         </input>
       <button type='submit'>Get Price History</button>
