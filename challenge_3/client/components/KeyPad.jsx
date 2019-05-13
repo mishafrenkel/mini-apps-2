@@ -1,15 +1,15 @@
 import React from "react";
-import ScoreButtonRow from "./ScoreButtonRow";
+import KeyPadRow from "./KeyPadRow";
 
-const ScoreSelector = function({ onKeyPadPress }) {
-  const keyPadValues = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ["Spare", 0, "Strike"]];
+const KeyPad = function({ onKeyPadPress }) {
+  const inputOptions = [[1, 2, 3], [4, 5, 6], [7, 8, 9], ["Spare", 0, "Strike"]];
 
   return (
     <div id="keypad">
       <table border="1">
         <tbody>
-          {keyPadValues.map((row, index) => (
-            <ScoreButtonRow
+          {inputOptions.map((row, index) => (
+            <KeyPadRow
               row={row}
               key={`row${index}`}
               onKeyPadPress={onKeyPadPress}
@@ -21,4 +21,4 @@ const ScoreSelector = function({ onKeyPadPress }) {
   );
 };
 
-export default ScoreSelector;
+export default KeyPad;

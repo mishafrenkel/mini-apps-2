@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
-const ScoreButtonItem = ({ item, onKeyPadPress }) => {
+const KeyPadItem = function({ item, onKeyPadPress }) {
   const onClick = (event) => {
-    onKeyPadPress(e.target.innerHTML);
+    onKeyPadPress(event.target.innerHTML);
   };
 
   return (
     <td
-      className="scoreButton"
+      className="keypad-btn"
       style={{
         width: "100px",
         height: "100px",
         textAlign: "center",
         verticalAlign: "center"
       }}
-      onClick={e => onClick(e)}
+      onClick={event => onClick(event)}
     >
       {item}
     </td>
   );
 };
 
-export default ScoreButtonItem; 
+export default KeyPadItem;

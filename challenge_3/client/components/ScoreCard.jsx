@@ -1,39 +1,37 @@
-import React from 'react';
+import React from "react";
 
-const Scorecard = ({ scores }) => {
-  const headers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
-  let totalScore = scores.reduce((total, item) => {
-    return item ? total + parseInt(item) : total;
+const ScoreCard = function({ scores }) {
+  const frameHeaders = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+  let total = scores.reduce((total, item) => {
+    return item ? total + Number(item) : total;
   }, 0);
-  let subTotal = [];
-
+  let subtotal = [];
   for (let i = 0; i < scores.length; i++) {
     let sum;
     if (i % 2 === 1) {
       if (scores[i] === null) {
         sum = null;
       } else {
-        sum = parseInt(scores) + parseInt(scores[i - 1]);
+        sum = Number(scores[i]) + Number(scores[i - 1]);
         if (i / 2 > 1) {
-          sum = sum + subTotal[subTotal.length - 1];
+          sum = sum + subtotal[subtotal.length - 1];
         }
       }
-      subTotal.push(sum);
+      subtotal.push(sum);
     }
   }
 
   return (
     <div>
       <table border="1">
-      <thead>
+        <thead>
           <tr>
-            {headers.map((header, index) => (
+            {frameHeaders.map((header, index) => (
               <th colSpan="2" key={`header${index}`}>
                 {header}
               </th>
             ))}
-            <th>Total</th>
+            <th>Score</th>
           </tr>
         </thead>
         <tbody>
@@ -53,10 +51,10 @@ const Scorecard = ({ scores }) => {
             ))}
             <td
               style={{
-                textAlign: "center",
-                verticalAlign: "center",
                 width: "48px",
                 height: "48px",
+                textAlign: "center",
+                verticalAlign: "center"
               }}
             >
               {total}
@@ -68,9 +66,9 @@ const Scorecard = ({ scores }) => {
                 key={`subtotal-${index}`}
                 colSpan="2"
                 style={{
+                  height: "48px",
                   textAlign: "center",
-                  verticalAlign: "center",
-                  height: "60px"
+                  verticalAlign: "center"
                 }}
               >
                 {score}
@@ -83,4 +81,4 @@ const Scorecard = ({ scores }) => {
   );
 };
 
-export default Scorecard;
+export default ScoreCard;

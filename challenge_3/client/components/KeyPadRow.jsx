@@ -1,11 +1,11 @@
 import React from "react";
-import ScoreButton from "./ScoreButton";
+import KeyPadItem from "./KeyPadItem";
 
-const ScoreButtonRow = ({ row, onKeyPadPress }) => {
+const KeyPadRow = function({ row, onKeyPadPress }) {
   return (
     <tr>
       {row.map(item => (
-        <ScoreButton
+        <KeyPadItem
           item={item}
           onKeyPadPress={onKeyPadPress}
           key={`item${item}`}
@@ -15,4 +15,4 @@ const ScoreButtonRow = ({ row, onKeyPadPress }) => {
   );
 };
 
-export default ScoreButtonRow;
+export default KeyPadRow;
