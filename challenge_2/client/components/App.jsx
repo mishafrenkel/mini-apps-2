@@ -1,97 +1,71 @@
 import React, { Component } from 'react';
-import Header from './Header';
-import CoinList from './CoinsList';
-import Details from './Details';
+// import ReactDOM from 'react-dom';
+import Header from './Header.jsx';
+import BPIChart from './Chart.jsx';
+import DateSelector from './DateSelector.jsx';
 import axios from 'axios';
 
-const ENDPOINT = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`;
-
-export default class App extends Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentCoins: [
-        { "time": { "updated": "Sep 18, 2013 17:27:00 UTC", "updatedISO": "2013-09-18T17:27:00+00:00" }, "disclaimer": "This data was produced from the CoinDesk Bitcoin Price Index. Non-USD currency data converted using hourly conversion rate from openexchangerates.org", "bpi": { "USD": { "code": "USD", "rate": "126.5235", "description": "United States Dollar", "rate_float": 126.5235 }, "CNY": { "code": "CNY", "rate": "775.0665", "description": "Chinese Yuan", "rate_float": "775.0665" } } }
-      ],
-      history: {
-        "bpi": {
-          "2013-09-01": 128.2597,
-        },
-        "disclaimer": "This data was produced from the CoinDesk Bitcoin Price Index. BPI value data returned as USD.",
-        "time": {
-          "updated":"Sep 6, 2013 00:03:00 UTC",
-          "updatedISO": "2013-09-06T00:03:00+00:00"
-        },
-      },
-      startDate: '2019-4-25',
-      endDate: '2019-5-10',
-      graphType: 'bar',
-    };
-    this.selectGraphType = this.selectGraphType.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSearch = this.handleSearch.bind(this);
-  };
+      labels: [],
+      data: [],
+      startDate: '',
+      endDate: '',
+    }
 
-  selectGraphType(event) {
-    this.setState({
-      graphType: event.target.value;
-    });
+    this.renderChart = this.renderChart.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.renderChart();
+  }
+
+  renderChart(query) {
+    axios.get('/coins', query)
+      .then(results => {
+        this.setState({
+          labels: Object.keys(results.data),
+          data: Object.values(results.data),
+        })
+      })
+      .catch(err => console.error(err));  
   }
 
   handleChange(event) {
     const name = event.target.name;
-    const value = event.target.value; 
-    const updatedState = {};
+    const value = event.target.value;
+
     this.setState({
-      name: value
+      [name]: value  
     });
   }
 
-  handleSearch(e) {
+  handleSubmit(e) {
     e.preventDefault();
-
-    axios(`https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`)
-      .then(results => {
-        this.setState({
-          history: results.data,
-        });
-      });
+    let query = { 
+      params: {
+        startDate: this.state.startDate,
+        endDate: this.state.endDate
+      }
+    }
+    this.renderChart(query);
   }
-
-  componentDidMount() {
-    axios(ENDPOINT)
-      .then(results => {
-        this.setState({
-          currentCoins: [results.data]
-        });
-      })
-      .catch(err => console.error('Something went wrong', err));
-
-    axios(ENDPOINT)
-      .then(results => {
-        this.setState({
-          history: results.data
-        })
-      });
-  }
-
   render() {
     return (
       <div>
         <Header />
-        <div id="mainDisplay">
-          <CoinList coins={this.state.currentCoins} />
-          <Details 
-            graphType={this.state.graphType}
-            coin={this.state.currentCoins[0]}
-            history={this.state.history.bpi}
-            selectGraphType={this.select}
-            handleChange={this.handleChange}
-            handleSearch={this.handleSearch}
-          />
+        <div>
+          <DateSelector handleChange={this.handleChange} handleSubmit={this.handleSubmit} />
+          <BPIChart labels={this.state.labels} data={this.state.data}/>
+          <p>Powered by CoinDesk</p>
         </div>
       </div>
-    );
+    )
   }
 }
 
+export default App;

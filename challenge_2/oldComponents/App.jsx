@@ -1,12 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Header from './Header';
+<<<<<<< HEAD:challenge_2/client/components/app.jsx
 import CoinList from './CoinsList';
 import Details from './Details';
+=======
+import Coins from './CoinList';
+import Details from './CoinDetails';
+>>>>>>> 120e5fc6c452417837410292eb6dae47eabcfa9a:challenge_2/oldComponents/App.jsx
 import axios from 'axios';
 
-const ENDPOINT = `https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`;
-
-export default class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,8 +26,8 @@ export default class App extends Component {
           "updatedISO": "2013-09-06T00:03:00+00:00"
         },
       },
-      startDate: '2019-4-25',
-      endDate: '2019-5-10',
+      startDate: '2018-10-01',
+      endDate: '2018-10-18',
       graphType: 'bar',
     };
     this.selectGraphType = this.selectGraphType.bind(this);
@@ -32,19 +35,23 @@ export default class App extends Component {
     this.handleSearch = this.handleSearch.bind(this);
   };
 
+<<<<<<< HEAD:challenge_2/client/components/app.jsx
   selectGraphType(event) {
     this.setState({
       graphType: event.target.value;
+=======
+  select(e) {
+    this.setState({
+      graphType: e.target.value,
+>>>>>>> 120e5fc6c452417837410292eb6dae47eabcfa9a:challenge_2/oldComponents/App.jsx
     });
   }
 
-  handleChange(event) {
-    const name = event.target.name;
-    const value = event.target.value; 
-    const updatedState = {};
-    this.setState({
-      name: value
-    });
+  handleChange(e) {
+    const key = e.target.name;
+    const newState = {}
+    newState[key] = e.target.value;
+    this.setState(newState);
   }
 
   handleSearch(e) {
@@ -59,19 +66,18 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-    axios(ENDPOINT)
+    axios('https://api.coindesk.com/v1/bpi/currentprice.json')
       .then(results => {
         this.setState({
-          currentCoins: [results.data]
+          currentCoins: [results.data],
         });
-      })
-      .catch(err => console.error('Something went wrong', err));
-
-    axios(ENDPOINT)
+      });
+    
+    axios(`https://api.coindesk.com/v1/bpi/historical/close.json?start=${this.state.startDate}&end=${this.state.endDate}`)
       .then(results => {
         this.setState({
-          history: results.data
-        })
+          history: results.data,
+        });
       });
   }
 
@@ -79,6 +85,7 @@ export default class App extends Component {
     return (
       <div>
         <Header />
+<<<<<<< HEAD:challenge_2/client/components/app.jsx
         <div id="mainDisplay">
           <CoinList coins={this.state.currentCoins} />
           <Details 
@@ -88,10 +95,22 @@ export default class App extends Component {
             selectGraphType={this.select}
             handleChange={this.handleChange}
             handleSearch={this.handleSearch}
+=======
+        <div id="main">
+          <Coins coins={this.state.currentCoins} />
+          <Details
+          graphType={this.state.graphType}
+          coin={this.state.currentCoins[0]}
+          history={this.state.history.bpi}
+          select={this.select}
+          handleChange={this.handleChange}
+          handleSearch={this.handleSearch}
+>>>>>>> 120e5fc6c452417837410292eb6dae47eabcfa9a:challenge_2/oldComponents/App.jsx
           />
         </div>
       </div>
-    );
+    )
   }
 }
 
+export default App;
